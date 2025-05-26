@@ -23,10 +23,6 @@ public class Summary {
     }
 
     public List<Match> getSummary() {
-        sortSummary();
         return matches;
-    }
-
-    private void sortSummary() {
     }
 }
