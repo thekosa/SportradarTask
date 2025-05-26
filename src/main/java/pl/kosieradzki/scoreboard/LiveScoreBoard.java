@@ -10,23 +10,31 @@ public class LiveScoreBoard {
     }
 
     public void incrementScore(String team) {
-        if(match.getHomeTeam().equals(team)) {
-            match.setHomeTeamScore(match.getHomeTeamScore() + 1);
-        }else {
-            match.setAwayTeamScore(match.getAwayTeamScore() + 1);
+        if (isLive) {
+            if (match.getHomeTeam().equals(team)) {
+                match.setHomeTeamScore(match.getHomeTeamScore() + 1);
+            } else {
+                match.setAwayTeamScore(match.getAwayTeamScore() + 1);
+            }
         }
     }
+
     public void updateScore(int homeTeamScore, int awayTeamScore) {
+        if (isLive) {
             match.setHomeTeamScore(homeTeamScore);
             match.setAwayTeamScore(awayTeamScore);
+        }
     }
+
     public Match getMatch() {
         return match;
     }
 
     public Match finishGame() {
+        if (isLive) {
             isLive = false;
             match.sum();
+        }
         return match;
     }
 
