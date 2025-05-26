@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.kosieradzki.scoreboard.LiveScoreBoard;
 import pl.kosieradzki.scoreboard.Match;
+import pl.kosieradzki.scoreboard.Summary;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,5 +45,25 @@ public class LiveScoreBoardTest {
         liveScoreBoard.startGame(new Match("Mexico", "Canada"));
         liveScoreBoard.finishGame();
         assertFalse(liveScoreBoard.isLive());
+    }
+
+    @Test
+    void generateSummaryTest() {
+        Summary summary = new Summary();
+
+        liveScoreBoard.startGame(new Match("Mexico", "Canada"));
+        summary.addMatch(liveScoreBoard.finishGame());
+
+        liveScoreBoard = new LiveScoreBoard();
+        liveScoreBoard.startGame(new Match("Spain", "Brazil"));
+        liveScoreBoard.updateScore( 10, 2);
+        summary.addMatch(liveScoreBoard.finishGame());
+
+        liveScoreBoard = new LiveScoreBoard();
+        liveScoreBoard.startGame(new Match("Germany", "France"));
+        liveScoreBoard.updateScore( 2, 2);
+        summary.addMatch(liveScoreBoard.finishGame());
+
+        assertEquals(3, summary.getSummary().size());
     }
 }
