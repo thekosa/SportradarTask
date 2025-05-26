@@ -2,9 +2,9 @@ package scoreboard;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.kosieradzki.exceptions.GameNotFoundException;
 import pl.kosieradzki.scoreboard.LiveScoreBoard;
 import pl.kosieradzki.scoreboard.Match;
-import pl.kosieradzki.scoreboard.Summary;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,5 +45,11 @@ public class LiveScoreBoardTest {
         liveScoreBoard.startGame(new Match("Mexico", "Canada"));
         liveScoreBoard.finishGame();
         assertFalse(liveScoreBoard.isLive());
+    }
+
+    @Test
+    void shouldThrowWhenUpdatingNonExistentMatch() {
+        LiveScoreBoard lsb = new LiveScoreBoard();
+        assertThrows(GameNotFoundException.class, () -> lsb.updateScore(1, 1));
     }
 }
