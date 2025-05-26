@@ -7,9 +7,9 @@ public class Match {
     private int awayTeamScore;
     private int sum;
 
-    public Match(String mexico, String canada) {
-        this.homeTeam = mexico;
-        this.awayTeam = canada;
+    public Match(String homeTeam, String awayTeam) {
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
         this.homeTeamScore = 0;
         this.awayTeamScore = 0;
     }
