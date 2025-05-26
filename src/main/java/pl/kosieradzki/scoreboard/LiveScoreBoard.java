@@ -1,5 +1,6 @@
 package pl.kosieradzki.scoreboard;
 
+import pl.kosieradzki.exceptions.GameAlreadyStartedException;
 import pl.kosieradzki.exceptions.GameNotFoundException;
 import pl.kosieradzki.exceptions.InvalidScoreException;
 
@@ -8,6 +9,9 @@ public class LiveScoreBoard {
     private Match match;
 
     public void startGame(Match match) {
+        if (isLive) {
+            throw new GameAlreadyStartedException();
+        }
         isLive = true;
         this.match = match;
     }
