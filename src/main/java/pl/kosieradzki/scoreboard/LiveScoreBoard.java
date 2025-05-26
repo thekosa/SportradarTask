@@ -1,6 +1,7 @@
 package pl.kosieradzki.scoreboard;
 
 import pl.kosieradzki.exceptions.GameNotFoundException;
+import pl.kosieradzki.exceptions.InvalidScoreException;
 
 public class LiveScoreBoard {
     private boolean isLive = false;
@@ -16,9 +17,9 @@ public class LiveScoreBoard {
             throw new GameNotFoundException();
         }
         if (match.getHomeTeam().equals(team)) {
-            match.setHomeTeamScore(match.getHomeTeamScore() + 1);
+            match.setHomeTeamScore(validateScore(match.getHomeTeamScore() + 1));
         } else {
-            match.setAwayTeamScore(match.getAwayTeamScore() + 1);
+            match.setAwayTeamScore(validateScore(match.getAwayTeamScore() + 1));
         }
     }
 
@@ -26,8 +27,8 @@ public class LiveScoreBoard {
         if (!isLive) {
             throw new GameNotFoundException();
         }
-        match.setHomeTeamScore(homeTeamScore);
-        match.setAwayTeamScore(awayTeamScore);
+        match.setHomeTeamScore(validateScore(homeTeamScore));
+        match.setAwayTeamScore(validateScore(awayTeamScore));
     }
 
     public Match getMatch() {
@@ -45,5 +46,13 @@ public class LiveScoreBoard {
 
     public boolean isLive() {
         return isLive;
+    }
+
+    private int validateScore(int score) {
+        int maxScore = 1000;
+        if (score < 0 || score > maxScore) {
+            throw new InvalidScoreException(score);
+        }
+        return score;
     }
 }
