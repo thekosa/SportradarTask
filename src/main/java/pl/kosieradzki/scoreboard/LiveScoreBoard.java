@@ -16,6 +16,8 @@ public class LiveScoreBoard {
             match.setAwayTeamScore(match.getAwayTeamScore() + 1);
         }
     }
+    public void updateScore(int homeTeamScore, int awayTeamScore) {
+    }
     public Match getMatch() {
         return match;
     }
