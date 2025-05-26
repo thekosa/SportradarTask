@@ -8,7 +8,13 @@ public class LiveScoreBoard {
         isLive = true;
         this.match = match;
     }
+
     public void incrementScore(String team) {
+        if(match.getHomeTeam().equals(team)) {
+            match.setHomeTeamScore(match.getHomeTeamScore() + 1);
+        }else {
+            match.setAwayTeamScore(match.getAwayTeamScore() + 1);
+        }
     }
     public Match getMatch() {
         return match;
