@@ -3,6 +3,7 @@ package scoreboard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.kosieradzki.exceptions.GameNotFoundException;
+import pl.kosieradzki.exceptions.InvalidScoreException;
 import pl.kosieradzki.scoreboard.LiveScoreBoard;
 import pl.kosieradzki.scoreboard.Match;
 
@@ -51,5 +52,13 @@ public class LiveScoreBoardTest {
     void shouldThrowWhenUpdatingNonExistentMatch() {
         LiveScoreBoard lsb = new LiveScoreBoard();
         assertThrows(GameNotFoundException.class, () -> lsb.updateScore(1, 1));
+    }
+
+    @Test
+    void shouldThrowWhenScoreExceedsLimit() {
+        LiveScoreBoard lsb = new LiveScoreBoard();
+        lsb.startGame(new Match("A", "B"));
+        assertThrows(InvalidScoreException.class, () -> lsb.updateScore(-25, 3));
+        assertThrows(InvalidScoreException.class, () -> lsb.updateScore(2, 10002));
     }
 }
