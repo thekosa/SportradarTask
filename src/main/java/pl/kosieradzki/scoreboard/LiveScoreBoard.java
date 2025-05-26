@@ -23,8 +23,14 @@ public class LiveScoreBoard {
     public Match getMatch() {
         return match;
     }
-    public void finishGame() {
+
+    public Match finishGame() {
+            isLive = false;
+            match.sum();
+        return match;
     }
+
     public boolean isLive() {
+        return isLive;
     }
 }

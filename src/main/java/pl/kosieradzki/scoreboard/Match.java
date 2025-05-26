@@ -55,5 +55,6 @@ public class Match {
     }
 
     public void sum() {
+        sum = homeTeamScore + awayTeamScore;
     }
 }
