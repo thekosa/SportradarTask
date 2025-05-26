@@ -23,4 +23,11 @@ public class LiveScoreBoardTest {
         assertEquals("Mexico", liveScoreBoard.getMatch().getHomeTeam());
         assertEquals("Canada", liveScoreBoard.getMatch().getAwayTeam());
     }
+
+    @Test
+    void incrementScoreTest() {
+        liveScoreBoard.startGame(new Match("Mexico", "Canada"));
+        liveScoreBoard.incrementScore(liveScoreBoard.getMatch().getHomeTeam());
+        assertEquals(1, liveScoreBoard.getMatch().getHomeTeamScore());
+    }
 }

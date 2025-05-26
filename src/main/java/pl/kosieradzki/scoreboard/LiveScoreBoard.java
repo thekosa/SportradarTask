@@ -8,6 +8,8 @@ public class LiveScoreBoard {
         isLive = true;
         this.match = match;
     }
+    public void incrementScore(String team) {
+    }
     public Match getMatch() {
         return match;
     }
