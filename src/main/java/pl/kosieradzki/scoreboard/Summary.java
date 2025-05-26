@@ -12,10 +12,7 @@ public class Summary {
             return;
         }
         for (int i = 0; i < matches.size(); i++) {
-            if (match.getSum() > matches.get(i).getSum()) {
-                matches.add(i, match);
-                return;
-            } else if (match.getSum() == matches.get(i).getSum()) {
+            if (match.getSum() >= matches.get(i).getSum()) {
                 matches.add(i, match);
                 return;
             }
