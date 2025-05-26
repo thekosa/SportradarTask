@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Summary {
-    private List<Match> matches;
+    private final List<Match> matches = new ArrayList<>();
 
     public void addMatch(Match match) {
+        matches.add(match);
     }
 
     public List<Match> getSummary() {
+        sortSummary();
         return matches;
+    }
+
+    private void sortSummary() {
     }
 }
