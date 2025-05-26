@@ -2,6 +2,7 @@ package scoreboard;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.kosieradzki.exceptions.GameAlreadyStartedException;
 import pl.kosieradzki.exceptions.GameNotFoundException;
 import pl.kosieradzki.exceptions.InvalidScoreException;
 import pl.kosieradzki.scoreboard.LiveScoreBoard;
@@ -60,5 +61,13 @@ public class LiveScoreBoardTest {
         lsb.startGame(new Match("A", "B"));
         assertThrows(InvalidScoreException.class, () -> lsb.updateScore(-25, 3));
         assertThrows(InvalidScoreException.class, () -> lsb.updateScore(2, 10002));
+    }
+
+    @Test
+    void shouldThrowWhenGameAlreadyStarted() {
+        LiveScoreBoard lsb = new LiveScoreBoard();
+        Match match = new Match("Mexico", "Canada");
+        lsb.startGame(match);
+        assertThrows(GameAlreadyStartedException.class, () -> lsb.startGame(match));
     }
 }
