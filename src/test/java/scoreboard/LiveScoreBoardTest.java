@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import pl.kosieradzki.scoreboard.LiveScoreBoard;
 import pl.kosieradzki.scoreboard.Match;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LiveScoreBoardTest {
     private LiveScoreBoard liveScoreBoard;
@@ -30,9 +30,19 @@ public class LiveScoreBoardTest {
         liveScoreBoard.incrementScore(liveScoreBoard.getMatch().getHomeTeam());
         assertEquals(1, liveScoreBoard.getMatch().getHomeTeamScore());
     }
+
+    @Test
     void updateScoreTest() {
         liveScoreBoard.startGame(new Match("Mexico", "Canada"));
         liveScoreBoard.updateScore(0, 5);
         assertEquals(0, liveScoreBoard.getMatch().getHomeTeamScore());
         assertEquals(5, liveScoreBoard.getMatch().getAwayTeamScore());
+    }
+
+    @Test
+    void finishGameTest() {
+        liveScoreBoard.startGame(new Match("Mexico", "Canada"));
+        liveScoreBoard.finishGame();
+        assertFalse(liveScoreBoard.isLive());
+    }
 }

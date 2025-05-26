@@ -23,4 +23,8 @@ public class LiveScoreBoard {
     public Match getMatch() {
         return match;
     }
+    public void finishGame() {
+    }
+    public boolean isLive() {
+    }
 }
